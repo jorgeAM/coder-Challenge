@@ -1,7 +1,7 @@
 import cors from 'cors'
 import express from 'express'
 
-let app = express()
+const app = express()
 
 app.use(cors())
 app.use(express.urlencoded({ extended: false }))
