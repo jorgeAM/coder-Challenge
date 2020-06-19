@@ -22,18 +22,32 @@ angular.module('todoList').component('todoList', {
     </section>
     <section>
       <article class="add-todo-container">
-        <input class="add-todo-input" ng-model="$ctrl.query"/>
-        <input class="add-todo-btn" type="submit" value="AGREGAR"/>
+        <input class="add-todo-input" ng-model="$ctrl.title"/>
+        <input
+          class="add-todo-btn"
+          type="submit"
+          value="AGREGAR"
+          ng-click="$ctrl.addTodo()"
+        />
       </article>
     </section>
-    <p>{{$ctrl.query}}</p>
   `,
-  controller: function TodoListController() {
-    this.todos = [
-      {
-        title: 'Ir al mercado'
-      }
-    ]
-    this.query = ''
+  controller: function TodoListController($http) {
+    this.todos = []
+    this.title = ''
+
+    this.addTodo = function addTodo() {
+      const title = this.title
+      $http.post('http://localhost:9000/api/v1/todo', { title }).then(res => {
+        const todo = res.data.todo
+        this.todos.push(todo)
+      })
+
+      this.title = ''
+    }
+
+    $http.get('http://localhost:9000/api/v1/todo').then(res => {
+      this.todos = res.data.todos
+    })
   }
 })
