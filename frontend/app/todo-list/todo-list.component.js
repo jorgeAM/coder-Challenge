@@ -15,7 +15,13 @@ angular.module('todoList').component('todoList', {
               />
               <span class="left">{{todo.title}}</span>
             </div>
-            <button type="button" class="btn btn-danger">Borrar</button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              ng-click="$ctrl.deleteTodo(todo._id)"
+            >
+              Borrar
+            </button>
           </li>
         </ul>
       </article>
@@ -44,6 +50,16 @@ angular.module('todoList').component('todoList', {
       })
 
       this.title = ''
+    }
+
+    this.deleteTodo = function deleteTodo(id) {
+      if (!confirm('Are you sure you wanna remove this todo?')) {
+        return
+      }
+
+      $http.delete(`http://localhost:9000/api/v1/todo/${id}`).then(res => {
+        this.todos = this.todos.filter(todo => todo._id !== id)
+      })
     }
 
     $http.get('http://localhost:9000/api/v1/todo').then(res => {
