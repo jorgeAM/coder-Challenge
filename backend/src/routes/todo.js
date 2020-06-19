@@ -1,29 +1,18 @@
 import express from 'express'
+import { create, list, get, complete, edit, remove } from '../controllers/todo'
 
 const router = express.Router()
 
-router.post('/', async (req, res) => {
-  res.json({ message: 'cear' })
-})
+router.post('/', create)
 
-router.get('/', async (req, res) => {
-  res.json({ message: 'listar' })
-})
+router.get('/', list)
 
-router.get('/:id', async (req, res) => {
-  res.json({ message: 'ver 1' })
-})
+router.get('/:id', get)
 
-router.put('/:id/complete', async (req, res) => {
-  res.json({ message: 'completar' })
-})
+router.put('/:id/complete', complete)
 
-router.put('/:id', async (req, res) => {
-  res.json({ message: 'editar' })
-})
+router.put('/:id', edit)
 
-router.delete('/:id', async (req, res) => {
-  res.json({ message: 'eliminar' })
-})
+router.delete('/:id', remove)
 
 export default router
