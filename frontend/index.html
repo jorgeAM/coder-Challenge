@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="todoApp" lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TODO</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Megrim&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vast+Shadow&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/todo-list.component.js"></script>
+  </head>
+  <body ng-controller="TodoListController">
+    <header class="header">
+      <h1>
+        Tienes <span class="emphasis">{{todos.length}}</span> cosas por hacer
+      </h1>
+    </header>
+    <section>
+      <article>
+        <todo-list></todo-list>
+      </article>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  font-family: 'Megrim', cursive;
+}
+
+h1 {
+  margin: 0;
+}
+
+.emphasis {
+  font-family: 'Vast Shadow', cursive;
+  font-size: 4em;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+.todo {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+}
+
+.title-todo {
+  align-items: center;
+  display: flex;
+  font-size: 3em;
+  list-style: none;
+}
+
+.left {
+  margin-left: 16px;
+}
