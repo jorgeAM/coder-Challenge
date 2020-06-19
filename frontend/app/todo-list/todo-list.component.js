@@ -1,4 +1,4 @@
-angular.module('todoApp').component('todoList', {
+angular.module('todoList').component('todoList', {
   template: `
     <ul>
       <li class="todo" ng-repeat="todo in $ctrl.todos">

@@ -19,16 +19,15 @@
       crossorigin="anonymous"
     />
 
-    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./app.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
-    <script src="./js/app.js"></script>
-    <script src="./js/todo-list.component.js"></script>
+    <script src="./app/app.module.js"></script>
+    <script src="./app/todo-list/todo-list.module.js"></script>
+    <script src="./app/todo-list/todo-list.component.js"></script>
   </head>
-  <body ng-controller="TodoListController">
+  <body>
     <header class="header">
-      <h1>
-        Tienes <span class="emphasis">{{todos.length}}</span> cosas por hacer
-      </h1>
+      <h1>Tienes <span class="emphasis">0</span> cosas por hacer</h1>
     </header>
     <section>
       <article>
