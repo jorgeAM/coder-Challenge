@@ -14,8 +14,7 @@ const todoSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now
-  },
-  doneAt: Date
+  }
 })
 
 const Todo = mongoose.model('Todo', todoSchema)
