@@ -38,6 +38,15 @@ ul {
   font-size: 4em;
 }
 
+.disabled-checkbox {
+  pointer-events: none;
+}
+
+.done {
+  color: gray;
+  text-decoration: line-through;
+}
+
 .header {
   display: flex;
   justify-content: center;

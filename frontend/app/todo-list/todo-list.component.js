@@ -9,11 +9,14 @@ angular.module('todoList').component('todoList', {
           <li class="todo" ng-repeat="todo in $ctrl.todos">
             <div class="title-todo">
               <input
+                ng-class="{'disabled-checkbox': todo.done}"
                 class="form-check-input"
                 type="checkbox"
                 value=""
+                ng-model="todo.done"
+                ng-change="$ctrl.doneTodo(todo._id)"
               />
-              <span class="left">{{todo.title}}</span>
+              <span ng-class="{done: todo.done}" class="left">{{todo.title}}</span>
             </div>
             <button
               type="button"
@@ -42,6 +45,10 @@ angular.module('todoList').component('todoList', {
     this.todos = []
     this.title = ''
 
+    $http.get('http://localhost:9000/api/v1/todo').then(res => {
+      this.todos = res.data.todos
+    })
+
     this.addTodo = function addTodo() {
       const title = this.title
       $http.post('http://localhost:9000/api/v1/todo', { title }).then(res => {
@@ -57,13 +64,19 @@ angular.module('todoList').component('todoList', {
         return
       }
 
-      $http.delete(`http://localhost:9000/api/v1/todo/${id}`).then(res => {
+      $http.delete(`http://localhost:9000/api/v1/todo/${id}`).then(() => {
         this.todos = this.todos.filter(todo => todo._id !== id)
       })
     }
 
-    $http.get('http://localhost:9000/api/v1/todo').then(res => {
-      this.todos = res.data.todos
-    })
+    this.doneTodo = function doneTodo(id) {
+      setTimeout(() => {
+        $http
+          .put(`http://localhost:9000/api/v1/todo/${id}/complete`)
+          .then(() => {
+            this.todos = this.todos.filter(todo => todo._id !== id)
+          })
+      }, 2000)
+    }
   }
 })
