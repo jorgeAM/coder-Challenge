@@ -31,23 +31,6 @@ const list = async (req, res) => {
   }
 }
 
-const get = async (req, res) => {
-  const { id } = req.params
-
-  try {
-    const todo = await Todo.findById(id)
-
-    if (!todo) {
-      return res.status(404).json({ message: 'Todo not found' })
-    }
-
-    return res.json({ todo })
-  } catch (error) {
-    logger(error.message)
-    return res.status(500).json({ message: 'something got wrong' })
-  }
-}
-
 const complete = async (req, res) => {
   const { id } = req.params
 
@@ -64,7 +47,7 @@ const complete = async (req, res) => {
     const todo = await Todo.findOneAndUpdate(query, payload, opts)
 
     if (!todo) {
-      return res.status(404).json({ message: 'Todo not found' })
+      return res.status(404).json({ message: 'TODO not found' })
     }
 
     return res.json({ todo })
@@ -91,7 +74,7 @@ const edit = async (req, res) => {
     const todo = await Todo.findOneAndUpdate(query, payload, opts)
 
     if (!todo) {
-      return res.status(404).json({ message: 'Todo not found' })
+      return res.status(404).json({ message: 'TODO not found' })
     }
 
     return res.json({ todo })
@@ -113,16 +96,16 @@ const remove = async (req, res) => {
     const todo = await Todo.findOne(query)
 
     if (!todo) {
-      return res.status(404).json({ message: 'Todo not found' })
+      return res.status(404).json({ message: 'TODO not found' })
     }
 
     await todo.remove()
 
-    return res.json({ message: 'todo was successfully deleted' })
+    return res.json({ message: 'TODO was successfully deleted' })
   } catch (error) {
     logger(error.message)
     return res.status(500).json({ message: 'something got wrong' })
   }
 }
 
-export { create, list, get, complete, edit, remove }
+export { create, list, complete, edit, remove }
