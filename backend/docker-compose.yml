@@ -17,5 +17,3 @@ services:
   db:
     image: mongo:4.4-rc-bionic
     restart: always
-    ports:
-      - 27017:27017
