@@ -24,8 +24,8 @@ the only thing that changes is how to run backend, check the following links:
 1) gen in **backend** folder
 2) run ``npm i``
 3) create ``.env``file and fill in with exactly all variable in ``.env.example``
-4) run ``npm run dev`` or run ``npm run build`` then ``run start``
-5) If you wanna run test just run ``run test``
+4) run ``npm run dev`` or run ``npm run build`` then ``npm start``
+5) If you wanna run test just run ``npm test``
 
 enjoy it!  🚀
 
