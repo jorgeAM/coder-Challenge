@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { Router } from 'express'
 import { create, list, complete, edit, remove } from '../controllers/todo'
 
 const router = express.Router()

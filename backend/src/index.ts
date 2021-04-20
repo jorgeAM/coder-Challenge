@@ -8,7 +8,6 @@ const logger = debug('api:index')
 const PORT = process.env.PORT || 3000
 const MONGO_URL = process.env.MONGO_URL
 
-
 mongoose.connect(MONGO_URL!, {
   useFindAndModify: false,
   useNewUrlParser: true,
