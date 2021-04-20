@@ -1,9 +1,9 @@
 import 'dotenv/config'
-import debug from 'debug'
+import debug, { Debugger } from 'debug'
 import mongoose from 'mongoose'
 import app from './app'
 
-const logger = debug('api:index')
+const logger: Debugger = debug('api:index')
 
 const PORT = process.env.PORT || 3000
 const MONGO_URL = process.env.MONGO_URL
