@@ -1,10 +1,12 @@
+import {Request, Response} from 'express'
 import debug from 'debug'
 import Todo from '../models/todo'
+import CreateRequest from './createRequest'
 
 const logger = debug('api:src:controllers:todo')
 
-const create = async (req, res) => {
-  const { title } = req.body
+const create = async (req: Request, res: Response) => {
+  const { title } = req.body as CreateRequest
 
   try {
     const todo = await Todo.create({ title })
@@ -16,13 +18,13 @@ const create = async (req, res) => {
   }
 }
 
-const list = async (req, res) => {
+const list = async (req: Request, res: Response) => {
   try {
     const query = {
       done: false
     }
 
-    const todos = await Todo.find(query)
+    const todos = await Todo.find(query).lean()
 
     return res.json({ todos })
   } catch (error) {
@@ -31,7 +33,7 @@ const list = async (req, res) => {
   }
 }
 
-const complete = async (req, res) => {
+const complete = async (req: Request, res: Response) => {
   const { id } = req.params
 
   try {
@@ -57,7 +59,7 @@ const complete = async (req, res) => {
   }
 }
 
-const edit = async (req, res) => {
+const edit = async (req: Request, res: Response) => {
   const { id } = req.params
   const { title } = req.body
 
@@ -84,7 +86,7 @@ const edit = async (req, res) => {
   }
 }
 
-const remove = async (req, res) => {
+const remove = async (req: Request, res: Response) => {
   const { id } = req.params
 
   try {
