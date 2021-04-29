@@ -22,6 +22,15 @@ class Todo {
             createdAt: this.createdAt
         }
     }
+
+    static fromPrimitive(primitive: {id: string, title: string, done: boolean, createdAt: Date}): Todo {
+        return new Todo(
+            new TodoId(primitive.id),
+            new TodoTitle(primitive.title),
+            primitive.done,
+            primitive.createdAt
+            )
+    }
 }
 
 export default Todo

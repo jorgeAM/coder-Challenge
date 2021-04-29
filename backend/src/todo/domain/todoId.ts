@@ -15,7 +15,6 @@ class TodoId {
         return new ObjectID()
     }
 
-
     private isValid(value: string | ObjectID): boolean {
         return ObjectID.isValid(value)
     }
