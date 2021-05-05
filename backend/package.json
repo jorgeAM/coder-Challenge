@@ -4,10 +4,9 @@
   "description": "toDo backend",
   "main": "src/index.js",
   "scripts": {
-    "build": "babel src --out-dir .dist",
-    "start": "node .dist",
+    "build": "tsc",
+    "start": "DEBUG=api:* node .dist/app",
     "dev": "DEBUG=api:* nodemon --watch 'src/**' --ext 'js,ts,json' --ignore 'src/**/*.test.ts' --exec 'ts-node src/app/index.ts'",
-    "tsc": "tsc",
     "lint": "./node_modules/.bin/eslint . --fix",
     "test": "jest"
   },
