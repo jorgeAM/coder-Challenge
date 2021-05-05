@@ -1,7 +1,7 @@
-import { MongoRepository } from "../../shared/infrastructure/persistence/mongoRepository";
-import TodoRepository from "../domain/repository";
-import Todo from "../domain/todo";
-import TodoId from "../domain/todoId";
+import { MongoRepository } from "../../../shared/infrastructure/persistence/mongoRepository";
+import TodoRepository from "../../domain/repository";
+import Todo from "../../domain/todo";
+import TodoId from "../../domain/todoId";
 
 class MongoTodoRepository extends MongoRepository implements TodoRepository {
     async save(todo: Todo): Promise<void> {
@@ -13,7 +13,7 @@ class MongoTodoRepository extends MongoRepository implements TodoRepository {
         const collection = await this.getCollection()
 
         const query = {
-            _id: id.value
+            _id: id.getObjectId()
         }
 
         const doc = await collection.findOne(query)
@@ -24,7 +24,7 @@ class MongoTodoRepository extends MongoRepository implements TodoRepository {
     async findAll(): Promise<Todo[]> {
         const collection = await this.getCollection()
 
-        const cursor = collection.find()
+        const cursor = await collection.find()
 
         const todos: Array<Todo> = []
 
@@ -40,7 +40,7 @@ class MongoTodoRepository extends MongoRepository implements TodoRepository {
         const collection = await this.getCollection()
 
         const query = {
-            _id: id.value
+            _id: id.getObjectId()
         }
 
 
@@ -60,7 +60,7 @@ class MongoTodoRepository extends MongoRepository implements TodoRepository {
         const collection = await this.getCollection()
 
         const query = {
-            _id: id.value
+            _id: id.getObjectId()
         }
 
         collection.deleteOne(query)

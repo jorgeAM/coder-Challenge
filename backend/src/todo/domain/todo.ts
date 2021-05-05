@@ -23,9 +23,9 @@ class Todo {
         }
     }
 
-    static fromPrimitive(primitive: {id: string, title: string, done: boolean, createdAt: Date}): Todo {
+    static fromPrimitive(primitive: {_id: string | object, title: string, done: boolean, createdAt: Date}): Todo {
         return new Todo(
-            new TodoId(primitive.id),
+            new TodoId(primitive._id.toString()),
             new TodoTitle(primitive.title),
             primitive.done,
             primitive.createdAt

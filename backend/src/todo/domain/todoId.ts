@@ -15,6 +15,10 @@ class TodoId {
         return new ObjectID()
     }
 
+    getObjectId(): ObjectID {
+        return new ObjectID(this.value)
+    }
+
     private isValid(value: string | ObjectID): boolean {
         return ObjectID.isValid(value)
     }
