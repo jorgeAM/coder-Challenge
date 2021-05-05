@@ -14,15 +14,15 @@ angular.module('todoList').component('todoList', {
                 type="checkbox"
                 value=""
                 ng-model="todo.done"
-                ng-change="$ctrl.doneTodo(todo._id)"
+                ng-change="$ctrl.doneTodo(todo.id)"
               />
               <span
-                id="{{todo._id}}"
+                id="{{todo.id}}"
                 ng-class="{done: todo.done}"
                 class="left"
                 contenteditable
                 ng-model="todo.title"
-                ng-blur="$ctrl.updateTodo(todo._id)"
+                ng-blur="$ctrl.updateTodo(todo.id)"
               >
                 {{todo.title}}
               </span>
@@ -30,7 +30,7 @@ angular.module('todoList').component('todoList', {
             <button
               type="button"
               class="btn btn-danger"
-              ng-click="$ctrl.deleteTodo(todo._id)"
+              ng-click="$ctrl.deleteTodo(todo.id)"
             >
               Borrar
             </button>
@@ -54,7 +54,7 @@ angular.module('todoList').component('todoList', {
     this.todos = []
     this.title = ''
 
-    $http.get('http://localhost:9000/api/v1/todo').then(res => {
+    $http.get('http://localhost:9000/api/v1/todos').then(res => {
       this.todos = res.data.todos
     })
 
@@ -66,7 +66,7 @@ angular.module('todoList').component('todoList', {
         return
       }
 
-      $http.post('http://localhost:9000/api/v1/todo', { title }).then(res => {
+      $http.post('http://localhost:9000/api/v1/todos', { title }).then(res => {
         const todo = res.data.todo
         this.todos.push(todo)
       })
@@ -79,7 +79,7 @@ angular.module('todoList').component('todoList', {
         return
       }
 
-      $http.delete(`http://localhost:9000/api/v1/todo/${id}`).then(() => {
+      $http.delete(`http://localhost:9000/api/v1/todos/${id}`).then(() => {
         this.todos = this.todos.filter(todo => todo._id !== id)
       })
     }
@@ -89,14 +89,14 @@ angular.module('todoList').component('todoList', {
       const title = el.innerHTML.trim()
 
       $http
-        .put(`http://localhost:9000/api/v1/todo/${id}`, { title })
+        .put(`http://localhost:9000/api/v1/todos/${id}`, { title })
         .then(() => console.log(`todo ${id} was updated`))
     }
 
     this.doneTodo = function doneTodo(id) {
       setTimeout(() => {
         $http
-          .put(`http://localhost:9000/api/v1/todo/${id}/complete`)
+          .put(`http://localhost:9000/api/v1/todos/${id}/complete`)
           .then(() => {
             this.todos = this.todos.filter(todo => todo._id !== id)
           })

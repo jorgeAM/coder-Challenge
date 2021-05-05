@@ -19,7 +19,7 @@ class TodoCreator {
         const todo = new Todo(
             new TodoId(params.id),
             new TodoTitle(params.title),
-            true,
+            false,
             new Date()
         )
 
