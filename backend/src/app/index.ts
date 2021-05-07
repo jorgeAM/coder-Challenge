@@ -1,4 +1,5 @@
 import 'dotenv/config'
+import 'reflect-metadata'
 import { Router } from 'express'
 import debug, { Debugger } from 'debug'
 import { MongoClient } from 'mongodb'
