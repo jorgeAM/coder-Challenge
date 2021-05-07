@@ -1,3 +1,4 @@
+import { Service } from 'typedi'
 import { Request, Response } from "express";
 import TodoCleaner from "../../../todo/application/todoCleaner";
 import Controller from "./controller";
@@ -6,6 +7,7 @@ type CleanTodoParams = {
     id: string
 }
 
+@Service()
 class CleanTodoController implements Controller {
     constructor(private cleaner: TodoCleaner) { }
     

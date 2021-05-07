@@ -1,5 +1,6 @@
-import TodoRepository from "../domain/repository";
+import { Service } from 'typedi'
 import TodoId from "../domain/todoId";
+import TodoRepository from "../domain/repository";
 import TodoNotExist from "../domain/todoNotExist";
 
 type Response = {
@@ -9,6 +10,7 @@ type Response = {
     createdAt: Date
 }
 
+@Service()
 class TodoFinder {
     private repository: TodoRepository
 

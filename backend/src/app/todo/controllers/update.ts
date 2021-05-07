@@ -1,3 +1,4 @@
+import { Service } from 'typedi'
 import { Request, Response } from "express";
 import TodoUpdater from "../../../todo/application/todoUpdater";
 import Controller from "./controller";
@@ -10,6 +11,7 @@ type UpdateTodoRequest = {
     title: string
 }
 
+@Service()
 class UpdateTodoController implements Controller {
     constructor(private updater: TodoUpdater) { }
     

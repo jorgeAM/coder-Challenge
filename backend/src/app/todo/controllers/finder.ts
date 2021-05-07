@@ -1,3 +1,4 @@
+import { Service } from 'typedi'
 import { Request, Response } from "express";
 import TodoFinder from "../../../todo/application/todoFinder";
 import Controller from "./controller";
@@ -6,6 +7,7 @@ type FindTodoParams = {
     id: string
 }
 
+@Service()
 class FindTodoController implements Controller {
     constructor(private finder: TodoFinder) { }
     

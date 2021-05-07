@@ -1,29 +1,27 @@
 import 'dotenv/config'
 import 'reflect-metadata'
 import { Router } from 'express'
+import { Container } from 'typedi'
 import debug, { Debugger } from 'debug'
-import { MongoClient } from 'mongodb'
 import app from './app'
-import MongoTodoRepository from '../todo/infrastructure/persistence/mongoTodoRepository'
 import { registerRoutes } from './todo/routes'
+import MongoClientFactory from '../shared/infrastructure/persistence/mongoClientFactory'
 
 const logger: Debugger = debug('api:index')
 
 const PORT = process.env.PORT || 3000
 const MONGO_URL = process.env.MONGO_URL
 
-const client = new MongoClient(MONGO_URL!, { useNewUrlParser: true, useUnifiedTopology: true})
-
-const mongoTodoRepository = new MongoTodoRepository(client)
-
 async function run() {
-  await client.connect()
+  const db = await MongoClientFactory.createClient(MONGO_URL!)
+  
+  Container.set('client.db', db)
 
   logger('we connected with mongoDB successfully 🍃')
 
   const router = Router()
 
-  registerRoutes(router, mongoTodoRepository)
+  registerRoutes(router)
 
   app.use('/api/v1', router)
 

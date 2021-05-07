@@ -1,7 +1,9 @@
 import { Collection, MongoClient } from 'mongodb'
+import { Service, Inject } from 'typedi'
 
+@Service()
 export abstract class MongoRepository {    
-    constructor(private client: MongoClient) { }
+    constructor(@Inject("client.db") private client: MongoClient) { }
 
     protected abstract getCollectionName(): string
 

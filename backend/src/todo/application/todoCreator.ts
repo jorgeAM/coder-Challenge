@@ -1,13 +1,15 @@
-import TodoRepository from "../domain/repository";
+import { Service } from 'typedi'
 import Todo from "../domain/todo";
 import TodoId from "../domain/todoId";
 import TodoTitle from "../domain/todoTitle";
+import TodoRepository from "../domain/repository";
 
 type Params = {
     id: string
     title: string
 }
 
+@Service()
 class TodoCreator {
     private repository: TodoRepository
 

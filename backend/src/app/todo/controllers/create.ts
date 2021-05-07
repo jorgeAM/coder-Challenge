@@ -1,3 +1,4 @@
+import { Service } from 'typedi'
 import { Request, Response } from "express";
 import TodoCreator from "../../../todo/application/todoCreator";
 import TodoId from "../../../todo/domain/todoId";
@@ -7,6 +8,7 @@ type CreateTodoRequest = {
     title: string
 }
 
+@Service()
 class CreateTodoController implements Controller {
     constructor(private creator: TodoCreator) { }
     

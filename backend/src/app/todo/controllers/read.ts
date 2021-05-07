@@ -1,7 +1,9 @@
+import { Service } from 'typedi'
 import { Request, Response } from "express";
 import TodoReader from "../../../todo/application/todoReader";
 import Controller from "./controller";
 
+@Service()
 class ReadTodoController implements Controller {
     constructor(private reader: TodoReader) { }
     
