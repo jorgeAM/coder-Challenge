@@ -1,9 +1,11 @@
-import TodoRepository from "../domain/repository";
+import { Service } from 'typedi'
 import Todo from "../domain/todo";
 import TodoId from "../domain/todoId";
-import TodoNotExist from "../domain/todoNotExist";
 import TodoTitle from "../domain/todoTitle";
+import TodoNotExist from "../domain/todoNotExist";
+import TodoRepository from "../domain/repository";
 
+@Service()
 class TodoUpdater {
     private repository: TodoRepository
 

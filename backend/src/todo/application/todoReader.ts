@@ -1,6 +1,6 @@
+import { Service, Inject } from 'typedi'
 import TodoRepository from "../domain/repository";
-import TodoId from "../domain/todoId";
-import TodoNotExist from "../domain/todoNotExist";
+import MongoTodoRepository from '../infrastructure/persistence/mongoTodoRepository';
 
 type Response = {
     id: string
@@ -9,10 +9,11 @@ type Response = {
     createdAt: Date
 }
 
+@Service()
 class TodoReader {
-    private repository: TodoRepository
+    private readonly repository: TodoRepository
 
-    constructor(repository: TodoRepository) {
+    constructor(@Inject(() => MongoTodoRepository) repository: TodoRepository) {
         this.repository = repository
     }
 

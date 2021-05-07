@@ -1,8 +1,10 @@
-import { MongoRepository } from "../../../shared/infrastructure/persistence/mongoRepository";
-import TodoRepository from "../../domain/repository";
+import { Service } from 'typedi'
 import Todo from "../../domain/todo";
 import TodoId from "../../domain/todoId";
+import TodoRepository from "../../domain/repository";
+import { MongoRepository } from "../../../shared/infrastructure/persistence/mongoRepository";
 
+@Service()
 class MongoTodoRepository extends MongoRepository implements TodoRepository {
     async save(todo: Todo): Promise<void> {
         const collection = await this.getCollection()
